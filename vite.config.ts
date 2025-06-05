@@ -6,12 +6,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     viteStaticCopy({
-      targets: [
-        {
-          src: "src/pages/*.html",
-          dest: "pages",
-        },
-      ],
+      targets: [{ src: "src/pages/*.html", dest: "pages" }],
     }),
   ],
 });
