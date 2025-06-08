@@ -1,12 +1,19 @@
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
+import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
-import { viteStaticCopy } from "vite-plugin-static-copy";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-    viteStaticCopy({
-      targets: [{ src: "src/pages/*.html", dest: "pages" }],
-    }),
-  ],
+  plugins: [tailwindcss()],
+  build: {
+    rollupOptions: {
+      input: {
+        index: path.resolve(__dirname, "index.html"),
+        privacy: path.resolve(__dirname, "privacy-policy.html"),
+      },
+    },
+  },
 });
